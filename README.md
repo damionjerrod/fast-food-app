@@ -1,2 +1,2 @@
-# week-eight
+# fast-food-app
 Week 8 Homework
