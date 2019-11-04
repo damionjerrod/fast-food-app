@@ -1,12 +1,15 @@
 var menu = {
-    "hamburger": 50,
-    "cheesburger": 50,
+    "hamburger": 0,
+    "cheeseburger": 50,
     "fries": 50,
     "drinks": 50
 }
 
+var menuItem = Object.keys(menu);
+var stock = Object.values(menu);
+
 var customerOrder = undefined;
-var order = [];
+var order = undefined;
 
 //gets data from input field and prints it on the screen
 document.getElementById("submit").addEventListener("click", function() {
@@ -22,12 +25,16 @@ document.getElementById("submit").addEventListener("click", function() {
     //loops through array, separates item from amt, & clears whitespace
     for (i = 0; i < order.length; i++) {
         order[i] = order[i].split(':').map(s => s.trim());
-        console.log(order[i]);      
-    }
+        console.log(order[i][1]);
+        console.log(menuItem);
 
-    for (item in menu) {
-        if (menu.hasOwnProperty(order[0][1])) {
-            console.log("on menu");
+        //checks if ordered item is on the menu & in stock
+        if (!menu.hasOwnProperty(order[i][1])) {
+            console.log("Item Not On Menu");
+        } else if (checkStock()) {
+            console.log("Item Out of Stock");
+        } else {
+            console.log(subInventory());
         }
     }
 })
@@ -37,6 +44,13 @@ document.getElementById("submit").addEventListener("click", function() {
     document.getElementById("entree").value = '';
 })
 
-        //for (j = 0; j < order[i].length; j++) {
-        //    console.log(order[i][j]);
-        //}
+
+//subtracts amount ordered from inventory
+function subInventory() {
+    return stock[i] - order[i][0];
+}
+
+//checks amount ordered against what's in inventory
+function checkStock() {
+    return order[i][0] >= stock[i];
+}
