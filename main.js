@@ -1,11 +1,10 @@
 var menu = {
-    "hamburger": 0,
-    "cheeseburger": 50,
+    "hamburger": 50,
     "fries": 50,
     "drinks": 50
 }
 
-var menuItem = Object.keys(menu);
+var menuItems = Object.keys(menu);
 var stock = Object.values(menu);
 
 var customerOrder = undefined;
@@ -13,7 +12,11 @@ var order = undefined;
 
 //gets data from input field and prints it on the screen
 document.getElementById("submit").addEventListener("click", function() {
-    customerOrder = document.getElementById("entree").value;
+    var entree = document.getElementById("entree").value;
+    var side = document.getElementById("side").value;
+    var drink = document.getElementById("drink").value;
+    customerOrder = entree + ", " + side + ", " + drink;
+    
     document.getElementById("result").innerHTML = customerOrder;
     console.log(customerOrder);
 
@@ -26,7 +29,7 @@ document.getElementById("submit").addEventListener("click", function() {
     for (i = 0; i < order.length; i++) {
         order[i] = order[i].split(':').map(s => s.trim());
         console.log(order[i][1]);
-        console.log(menuItem);
+        console.log(menuItems);
 
         //checks if ordered item is on the menu & in stock
         if (!menu.hasOwnProperty(order[i][1])) {
@@ -42,6 +45,12 @@ document.getElementById("submit").addEventListener("click", function() {
 //clears input field after submission
 document.getElementById("submit").addEventListener("click", function() {
     document.getElementById("entree").value = '';
+    document.getElementById("side").value = '';
+    document.getElementById("drink").value = '';
+})
+
+document.getElementById("menu").addEventListener("click", function() {
+    document.getElementById("").innerHTML = menuItems;
 })
 
 
