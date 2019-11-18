@@ -49,6 +49,7 @@ document.getElementById("submit").addEventListener("click", function() {
     document.getElementById("drink").value = '';
 })
 
+//prints menu items on screen (not fully functional yet)
 document.getElementById("menu").addEventListener("click", function() {
     document.getElementById("").innerHTML = menuItems;
 })
@@ -62,4 +63,18 @@ function subInventory() {
 //checks amount ordered against what's in inventory
 function checkStock() {
     return order[i][0] >= stock[i];
+}
+
+
+function sendOrder() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        } else {
+            console.log("Status Error");
+        }
+    };
+    xhr.open("GET", "https://swapi.co/documentation#root", true);
+    xhr.send();
 }
