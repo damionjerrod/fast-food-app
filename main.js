@@ -75,6 +75,6 @@ function sendOrder() {
             console.log("Status Error");
         }
     };
-    xhr.open("GET", "https://swapi.co/documentation#root", true);
+    xhr.open("GET", "https://localhost:8080", true);
     xhr.send();
 }
