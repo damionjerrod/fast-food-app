@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/damionjerrod/fast-food-app/issues"
   },
-  "homepage": "https://github.com/damionjerrod/fast-food-app#readme"
+  "homepage": "https://github.com/damionjerrod/fast-food-app#readme",
+  "dependencies": {
+    "mysql": "^2.17.1"
+  }
 }
