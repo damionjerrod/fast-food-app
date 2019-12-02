@@ -43,7 +43,4 @@ function setNewItem(itemName, itemCount){
 console.log(getAllInventory());
 
 module.exports = getAllInventory();
-module.exports = setNewItem(itemName, itemCount){
-    this.itemName = itemName;
-    this.itemCount = itemCount;
-};
+module.exports = setNewItem(itemName, itemCount);
