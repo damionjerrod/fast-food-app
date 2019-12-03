@@ -1,7 +1,11 @@
+let useDb = require('./db.js');
 let http = require("http");
 let path = require("path");
 let fs = require("fs");
 let port = 8080;
+
+let currentInventory = useDb.getAllInventory();
+// let addInventory = useDb.setNewItem();
 
 let server = http.createServer(function(req, res) {
     let filePath = '.' + req.url;

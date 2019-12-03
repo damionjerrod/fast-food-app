@@ -18,7 +18,8 @@ db.connect((err) =>{
 });
 
 function getAllInventory(){
-    db.query('SELECT * FROM inventory', function(err, rows, fields){
+    let itemSelect = 'SELECT * FROM inventory';
+    db.query(itemSelect, function(err, rows, fields){
         if(!err)
         console.log(rows);
         else
@@ -40,7 +41,9 @@ function setNewItem(itemName, itemCount){
 
 
 // console.log(setNewItem("Hamburger", 2));
-console.log(getAllInventory());
+// console.log(getAllInventory());
 
-module.exports = getAllInventory();
-module.exports = setNewItem(itemName, itemCount);
+module.exports = {
+    getAllInventory,
+    setNewItem
+}
