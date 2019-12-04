@@ -21,7 +21,7 @@ function getAllInventory(){
     let itemSelect = 'SELECT * FROM inventory';
     db.query(itemSelect, function(err, rows, fields){
         if(!err)
-        console.log(rows);
+        return rows;
         else
         console.log(err);
     })

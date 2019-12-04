@@ -1,57 +1,31 @@
-let useDb = require('./db.js');
-let http = require("http");
-let path = require("path");
-let fs = require("fs");
-let port = 8080;
+const useDb = require('./db.js');
+const http = require("http");
+const path = require("path");
+const url = require('url');
+const fs = require("fs");
+const express = require('express');
+const port = 8080;
+const app = express();
 
-let currentInventory = useDb.getAllInventory();
+// let currentInventory = useDb.getAllInventory();
 // let addInventory = useDb.setNewItem();
+app.use(express.static(__dirname + '/public'));
 
-let server = http.createServer(function(req, res) {
-    let filePath = '.' + req.url;
-    if (filePath == './') {
-        filePath = './index.html';
-    }
-    
-    let extname = String(path.extname(filePath)).toLowerCase();
-    let mimeTypes = {
-        '.html': 'text/html',
-        '.js': 'text/javascript',
-        '.css': 'text/css',
-        '.json': 'application/json',
-        '.png': 'image/png',
-        '.jpg': 'image/jpg',
-        '.gif': 'image/gif',
-        '.svg': 'image/svg+xml',
-        '.wav': 'audio/wav',
-        '.mp4': 'video/mp4',
-        '.woff': 'application/font-woff',
-        '.ttf': 'application/font-ttf',
-        '.eot': 'application/vnd.ms-fontobject',
-        '.otf': 'application/font-otf',
-        '.wasm': 'application/wasm'
-    };
 
-    let contentType = mimeTypes[extname] || 'application/octet-stream';
+// let parsedUrl = url.parse(req.url, true);
 
-    fs.readFile(filePath, function(error, html) {  
-        if (error) {  
-            res.writeHead(404);  
-            res.write(error);  
-            res.end();  
-        } else {  
-            res.writeHead(200, {  
-                'Content-Type': contentType  
-            });  
-            res.write(html);  
-            res.end();  
-        }
-
-        if (req.url == "/" || req.url == "/index.html") {
-            console.log("Displaying: index.html");
-        }
-    });  
+app.get('/index', function(req, res){
+    res.send('you are requesting the index page');
 });
 
-server.listen(port);
+app.get('/api/show', function(req, res){
+    res.send(useDb.getAllInventory());
+});
+
+app.post('/api/add', function(req, res){
+    
+});
+
+
+app.listen(port);
 console.log(`Server listening on port: ${port}`);
