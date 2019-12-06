@@ -78,3 +78,16 @@ function sendOrder() {
     xhr.open("GET", "https://localhost:8080", true);
     xhr.send();
 }
+
+function showInventory() {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        } else {
+            console.log("Status Error");
+        }
+    };
+    xhr.open("GET", "https://locoalhost:8080/api/show", true);
+    xhr.send();
+}

@@ -11,10 +11,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/api/show', getAllInventory);
+app.post('/api/add', setNewItem);
+
 app.get('/index', function(req, res){
     res.send('you are requesting the index page');
 });
 
 app.listen(port, function(){
     console.log(`Server listening on port: ${port}`);
-});
+}); 

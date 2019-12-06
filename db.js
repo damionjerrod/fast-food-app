@@ -31,13 +31,12 @@ module.exports = {
         });
     },
     setNewItem: (req, res) => {
-        let itemName = req.body.name;
-        let itemCount = req.body.count;
+        let itemName = "Cheeseburger";
+        let itemCount = 2;
         let itemInsert = `INSERT INTO inventory (item_name, item_count) VALUES ("${itemName}", ${itemCount})`;
         db.query(itemInsert, (err, result) => {
             if(!err) {
-                console.log(result);
-                console.log("Items Successfully Added to Database");
+                return res.send("Items Successfully Added to Database");
             } else {
                 console.log(err);
             }
